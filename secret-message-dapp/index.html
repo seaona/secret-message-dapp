@@ -34,7 +34,7 @@
         if (typeof web3 !== 'undefined') {
             web3 = new Web3(web3.currentProvider);
         } else {
-            web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
+            web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/b401fb48c90740528056720d69cf4ef7"));
             console.log("Connected provider")
         }
 
@@ -42,7 +42,7 @@
         web3.eth.defaultAccount = web3.eth.accounts[0];
 
         // Get the contract info 
-        const contractAddress = '0x645dF611C0F061003b0659257d7862766C90BFD1';
+        const contractAddress = '0xb41142a9bee526da0e11e8d94ba5bb3a54cc6ddb';
        	const abi = [
 			{
 				"inputs": [
@@ -78,14 +78,12 @@
 	 	console.log(`contract ${JSON.stringify(myMessage)}`);
 
 
-        $("#setMessageButton").click(function () {
-			message = $("#userInput").val();
+		 $("#setMessageButton").click(function () {
+    message = $("#userInput").val()
+    myMessage.setMessage(message, (error, result) => {message = result});
+    console.log($("#userInput").val())
+});
 
-            myMessage.setMessage(message, (error, result) => { message = result })
-			console.log(message)
-			
-            
-        });
 	</script>
 
     
